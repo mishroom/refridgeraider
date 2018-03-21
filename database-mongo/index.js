@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://heroku_lfspshdm:<dbpassword>@ds121589.mlab.com:21589/heroku_lfspshdm');
+mongoose.connect('mongodb://heroku_lfspshdm:bi1u80rcimam5enlkppvj7l3sp@ds121589.mlab.com:21589/heroku_lfspshdm');
 
 
 var db = mongoose.connection;
