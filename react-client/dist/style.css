@@ -6,13 +6,34 @@ img {
 	width: 70%;
 }
 
-.header {
-	text-align:center;
-	color: black;
-}
-.search {
+.banner { 
+    /* The image used */
+    /*background-image: url("http://images.mentalfloss.com/sites/default/files/styles/mf_image_16x9/public/503764-iStock-467362980.jpg");*/
+    background-color: #dedcdb;
+     /* Set a specific height */
+    
 
+    /* Position and center the image to scale nicely on all screens */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    padding: 200px;
 }
+.title {
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: black;
+  
+      color: black;
+  -webkit-text-fill-color: black; /* Will override color (regardless of order) */
+  -webkit-text-stroke-width: .25px;
+  -webkit-text-stroke-color: grey;
+}
+
 .results, .liked {
 	float: left;
     width: 50%;
@@ -20,6 +41,7 @@ img {
 
     
 }
+
 
 
 .col {

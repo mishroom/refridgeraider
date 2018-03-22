@@ -33,14 +33,14 @@ app.post('/storage', function (req, res) {
       var query = dataObj.query;
       query = query.split(',').join('%2C');
             // //connect to API 
-            unirest.get(`https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=true&ingredients=${query}&limitLicense=false&number=10&ranking=1`)
-            .header("X-Mashape-Key", "y8p0We0kS8mshZXRWGLWEQWduPRZp115RAsjsn4XvamU1HNo8g")
-            .header("X-Mashape-Host", "spoonacular-recipe-food-nutrition-v1.p.mashape.com")
-            .end(function (result) {
-              console.log(result.body);
-                res.end(JSON.stringify(result.body));
-              });
-            // res.end(JSON.stringify(sampleData));
+            // unirest.get(`https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=true&ingredients=${query}&limitLicense=false&number=10&ranking=1`)
+            // .header("X-Mashape-Key", "y8p0We0kS8mshZXRWGLWEQWduPRZp115RAsjsn4XvamU1HNo8g")
+            // .header("X-Mashape-Host", "spoonacular-recipe-food-nutrition-v1.p.mashape.com")
+            // .end(function (result) {
+            //   console.log(result.body);
+            //     res.end(JSON.stringify(result.body));
+            //   });
+            res.end(JSON.stringify(sampleData));
           }
 
        
@@ -64,7 +64,7 @@ app.get('/storage', function (req, res) {
 
 });
 
-app.listen(process.env.PORT, function() {
+app.listen(process.env.PORT || 3000, function() {
   console.log('server live');
 });
 

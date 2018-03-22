@@ -5,6 +5,7 @@ import $ from 'jquery';
 import Search from './components/Search.jsx';
 import RecipeList from './components/RecipeList.jsx';
 import RecipeItems from './components/RecipeItem.jsx';
+import Banner from './components/Banner.jsx';
 
 // import StyleSheet from './../dist/style.css';
 
@@ -186,16 +187,12 @@ class App extends React.Component {
   render () {
     return (
       <div id='parent'>
-        <div className="header">
-          <h1>~ Welcome to ~</h1>
-          <h1>RefridgerRaider</h1>
+        <div className="banner">
+          <Banner onSearch={this.search.bind(this)}/>
         </div>
-        <Search onSearch={this.search.bind(this)}/>
-       <RecipeList likedRecipes={this.state.likedRecipes} recipes={this.state.recipes} selectedOption={this.state.selectedOption} onSave={this.save.bind(this)} onDelete={this.delete.bind(this)} onClick={this.filter.bind(this)} onDownload={this.download.bind(this)} />
-
-        
-
-        
+        <div id="body">
+          <RecipeList likedRecipes={this.state.likedRecipes} recipes={this.state.recipes} selectedOption={this.state.selectedOption} onSave={this.save.bind(this)} onDelete={this.delete.bind(this)} onClick={this.filter.bind(this)} onDownload={this.download.bind(this)} />
+        </div>  
       </div>
     )
   }

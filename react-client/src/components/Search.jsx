@@ -24,10 +24,10 @@ class Search extends React.Component{
 		return (
 			<div>
 
-			<div className="search">
-			<h3>Search</h3>
+			<div >
+			<h4>use em before you lose em</h4>
 			Enter an ingredient  <input value={this.state.querys} onChange={this.onChange} onKeyPress={this.search} />       
-			<button onClick={this.search}> Search Recipes </button>
+			<button onClick={this.search}> Find Recipes </button>
 			</div>
 			</div>
 			)
