@@ -1,14 +1,18 @@
 import React from 'react';
 import Search from './Search.jsx';
+import NavBar from './NavBar.jsx';
 
 var Banner = (props) => (
-
-  <div className="title">
-  	<h1>
+<div>
+  <NavBar />	
+  <div className="banner-content">
+  	<span className="title">
   	RefridgeRaider
-  	</h1>
-  	<Search className="search" onSearch={props.onSearch}/>
+  	</span>
+  	<br />
+  	<Search className="search" onSearch={props.onSearch} />
   </div>
-)
+</div>  
+);
 
-  export default Banner;
+export default Banner;

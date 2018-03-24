@@ -7,6 +7,8 @@ import RecipeList from './components/RecipeList.jsx';
 import RecipeItems from './components/RecipeItem.jsx';
 import Banner from './components/Banner.jsx';
 
+
+
 // import StyleSheet from './../dist/style.css';
 
 var sampleData = [

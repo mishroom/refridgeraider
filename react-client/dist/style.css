@@ -1,18 +1,17 @@
 body {
-	background-color: #A5DA91
+	background-color: #F0FFF0
 }
 
 img {
-	width: 70%;
+	width: 300px;
+    height: 250px;
 }
 
 .banner { 
     /* The image used */
     /*background-image: url("http://images.mentalfloss.com/sites/default/files/styles/mf_image_16x9/public/503764-iStock-467362980.jpg");*/
-    background-color: #dedcdb;
-     /* Set a specific height */
-    
-
+    /*background-color: #dedcdb;*/
+    background-color: black;
     /* Position and center the image to scale nicely on all screens */
     background-position: center;
     background-repeat: no-repeat;
@@ -20,27 +19,34 @@ img {
     position: relative;
     padding: 200px;
 }
-.title {
+.banner-content {
     text-align: center;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    color: black;
-  
-      color: black;
-  -webkit-text-fill-color: black; /* Will override color (regardless of order) */
+    color: white;
+    font-size: 100%;
+ /* -webkit-text-fill-color: white;  Will override color (regardless of order) 
   -webkit-text-stroke-width: .25px;
-  -webkit-text-stroke-color: grey;
+  -webkit-text-stroke-color: white;*/
+}
+.title{
+	font-size: 500%;
+}
+.login {
+    position: absolute;
+    top: 10px;
+    right: 10px;
 }
 
-.results, .liked {
+/*.results, .liked {
 	float: left;
     width: 50%;
     display: inline;
 
     
-}
+}*/
 
 
 
@@ -50,17 +56,11 @@ img {
   
 }
 .recipe {
-	/*box-sizing: border-box;*/
-	width: 90%;
-	border: solid #144900 5px;
+	
 	padding: 5px;
-	margin-bottom:10px;
-	border-radius: 15px;
-	height: 100%;
-	overflow: auto;
 	
 }
-.likedRecipe {
+/* .likedRecipe {
 	box-sizing: border-box;
 	display: relative;
 	width: 90%;
@@ -69,8 +69,7 @@ img {
 	margin-bottom:10px;
 	border-radius: 15px;
 	overflow: auto;
-}
+}*/
 .radio{
-	width: auto;
-	float: left;
+	width: 100%;
 }

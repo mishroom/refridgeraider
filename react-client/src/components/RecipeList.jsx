@@ -1,6 +1,7 @@
 import React from 'react';
 import RecipeItem from './RecipeItem.jsx';
 import Liked from './Liked.jsx';
+import { Card } from 'semantic-ui-react';
 
 class RecipeList extends React.Component {
   constructor(props) {
@@ -20,7 +21,6 @@ render() {
   return (
 	<div>
 	<div className="results">
-	<h3>Recipes</h3>
   Filter By: <br />
 	<form>
 		<div className="radio">
@@ -48,20 +48,14 @@ render() {
             Additional Ingredients  
           </label>
         </div>
-	</form>
+	</form> <br />
 	<div>
-	{ this.props.recipes.map(recipe => <RecipeItem key={recipe.id} recipe={recipe} onSave={this.props.onSave}/>)}
+   <br />
+  <Card.Group centered>
+	{ this.props.recipes.map(recipe => <RecipeItem key={recipe.id} recipe={recipe} onSave={this.props.onSave}/>)} 
+  </Card.Group>
 	</div>
 	</div>
-
-
-	<div className="liked">
-	<h3>Saved Recipes</h3>
-  <button  > Download as CSV </button>
-  <br />
-	{this.props.likedRecipes.map(recipe => <Liked key={recipe.id} recipe={recipe} onDelete={this.props.onDelete} />)}
-
-	</div>  
 
 	</div>
 	)
