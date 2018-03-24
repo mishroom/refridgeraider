@@ -133,7 +133,7 @@ class App extends React.Component {
 
   search(ingredient) {
       $.ajax({
-      url: `http://localhost:3000/storage`,
+      url: `/storage`,
       type: 'POST',
       contentType: 'application/json',
       data: JSON.stringify({
@@ -151,7 +151,7 @@ class App extends React.Component {
 
   save(recipe) {
       $.ajax({
-      url: `http://localhost:3000/storage`,
+      url: `h/storage`,
       type: 'POST',
       //contentType: 'application/json',
        data: JSON.stringify({
@@ -169,7 +169,7 @@ class App extends React.Component {
 
   delete (recipe) {
     $.ajax({
-      url: `http://localhost:3000/storage`,
+      url: `/storage`,
       type: 'POST',
       contentType: 'application/json',
       data: JSON.stringify({
