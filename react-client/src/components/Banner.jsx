@@ -5,7 +5,7 @@ import { Divider } from 'semantic-ui-react';
 
 var Banner = (props) => (
 <div>
-  <NavBar onLogin={props.onLogin} />	
+  <NavBar onLogin={props.onLogin} onSignup={props.onSignup} />	
   <div className="banner-content">
   	<span className="title">
   	RefridgeRaider

@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://heroku_lfspshdm:bi1u80rcimam5enlkppvj7l3sp@ds121589.mlab.com:21589/heroku_lfspshdm', { useMongoClient: true });
+mongoose.connect('mongodb://mish:Llamas12@ds249398.mlab.com:49398/refridgeraider', { useMongoClient: true });
 
 var db = mongoose.connection;
 
@@ -11,24 +11,23 @@ db.once('open', function() {
   console.log('mongoose connected successfully');
 });
 
-var likedSchema = mongoose.Schema({
+var recipeSchema = mongoose.Schema({
   id: Number, 
   title: String,
   image: String,
-  imageType: String,
-  usedIngredientCount: Number,
-  missedIngredientCount: Number,
   likes: Number
 });
 
-var Recipe = mongoose.model('Recipe', likedSchema);
+var Recipe = mongoose.model('Recipe', recipeSchema);
 
-// var newInstance = new Recipe ({
-//   quantity: 3,
-//   description: "blubb"
-// });
+var userSchema = mongoose.Schema({
+  username: String,
+  password: String,
+  likedRecipes: [Object]
+});
 
-// newInstance.save();
+var User = mongoose.model('User', userSchema);
+
 
 var saveRecipe = function(recipe) {
   var newRecipe = new Recipe(recipe);

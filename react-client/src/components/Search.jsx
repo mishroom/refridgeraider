@@ -1,4 +1,5 @@
 import React from 'react';
+import { Input } from 'semantic-ui-react'
 
 class Search extends React.Component{
 	constructor(props) {
@@ -23,13 +24,13 @@ class Search extends React.Component{
 	render() {
 		return (
 			<div>
-			<br />
-			<div >
-			<input value={this.state.querys} onChange={this.onChange} onKeyPress={this.search} placeholder="Enter Ingredient" /> <br />      
-			<button onClick={this.search}> Find Recipes </button>
+				<br />
+				<div >
+					<input value={this.state.querys} onChange={this.onChange} onKeyPress={this.search} placeholder="Enter Ingredient" /> <br />      
+					<button onClick={this.search}> Find Recipes </button>
+				</div>
 			</div>
-			</div>
-			)
+		)
 	}
 }
 
