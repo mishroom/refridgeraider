@@ -1,10 +1,11 @@
 import React from 'react';
 import Search from './Search.jsx';
 import NavBar from './NavBar.jsx';
+import { Divider } from 'semantic-ui-react';
 
 var Banner = (props) => (
 <div>
-  <NavBar />	
+  <NavBar onLogin={props.onLogin} />	
   <div className="banner-content">
   	<span className="title">
   	RefridgeRaider
@@ -12,6 +13,7 @@ var Banner = (props) => (
   	<br />
   	<Search className="search" onSearch={props.onSearch} />
   </div>
+  <Divider inverted />
 </div>  
 );
 

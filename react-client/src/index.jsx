@@ -186,11 +186,25 @@ class App extends React.Component {
     })
   }
 
+  login () {
+    // $.ajax({
+    //   url: `/auth/facebook`,
+    //   type: 'POST',
+    //   contentType: 'application/json',
+    //   success: (data) => {
+    //     alert("login success", data)
+    //   },
+    //   error: (err) => {
+    //     console.error(err);
+    //   }
+    // })
+  }
+
   render () {
     return (
       <div id='parent'>
         <div className="banner">
-          <Banner onSearch={this.search.bind(this)}/>
+          <Banner onSearch={this.search.bind(this)} onLogin={this.login.bind(this)} />
         </div>
         <div id="body">
           <RecipeList likedRecipes={this.state.likedRecipes} recipes={this.state.recipes} selectedOption={this.state.selectedOption} onSave={this.save.bind(this)} onDelete={this.delete.bind(this)} onClick={this.filter.bind(this)} onDownload={this.download.bind(this)} />
