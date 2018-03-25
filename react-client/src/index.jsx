@@ -68,6 +68,7 @@ class App extends React.Component {
       likedRecipes: [],
       selectedOption: '',
       doubleClick: true,
+      user: [],
     }
   }
 
@@ -127,10 +128,6 @@ class App extends React.Component {
     }
   }
 
-  download () {
-    alert('DOWNLOAD CLICKED');
-  }
-
   search(ingredient) {
       $.ajax({
       url: `/storage`,
@@ -150,21 +147,22 @@ class App extends React.Component {
   }
 
   save(recipe) {
-      $.ajax({
-      url: `h/storage`,
-      type: 'POST',
-      //contentType: 'application/json',
-       data: JSON.stringify({
-        type: 'save',
-        recipe: recipe
-      }),
-      success: (data) => {
-        this.getLikedRecipes();
-      },
-      error: (err) => {
-        console.error(err);
-      }
-    })
+      // $.ajax({
+      //   url: `/storage`,
+      //   type: 'POST',
+      //   //contentType: 'application/json',
+      //    data: JSON.stringify({
+      //     type: 'save',
+      //     recipe: recipe
+      //   }),
+      //   success: (data) => {
+      //     this.getLikedRecipes();
+      //   },
+      //   error: (err) => {
+      //     console.error(err);
+      //   }
+      // })
+    
   }
 
   delete (recipe) {
@@ -198,10 +196,10 @@ class App extends React.Component {
     return (
       <div id='parent'>
         <div className="banner">
-          <Banner onSearch={this.search.bind(this)} onLogin={this.login.bind(this)} onSignup={this.signup.bind(this)} />
+          <Banner onSearch={this.search.bind(this)} onLogin={this.login.bind(this)} onSignup={this.signup.bind(this)} user={this.state.user}/>
         </div>
         <div id="body">
-          <RecipeList likedRecipes={this.state.likedRecipes} recipes={this.state.recipes} selectedOption={this.state.selectedOption} onSave={this.save.bind(this)} onDelete={this.delete.bind(this)} onClick={this.filter.bind(this)} onDownload={this.download.bind(this)} />
+          <RecipeList likedRecipes={this.state.likedRecipes} recipes={this.state.recipes} selectedOption={this.state.selectedOption} onSave={this.save.bind(this)} onDelete={this.delete.bind(this)} onClick={this.filter.bind(this)} user={this.state.user} />
         </div>  
       </div>
     )

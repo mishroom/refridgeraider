@@ -1,13 +1,16 @@
 import React from 'react';
 import AdditionalIngredients from './AdditionalIngredients.jsx';
 import UnusedIngredients from './UnusedIngredients.jsx';
-import { Card, Icon, Image } from 'semantic-ui-react';
+import { Card, Icon, Image, Button, Popup } from 'semantic-ui-react';
 
 class RecipeItem extends React.Component {
 
   constructor(props) {
     super(props);
     this.save = this.save.bind(this);
+    this.handleClose = this.handleClose.bind(this);
+    this.handleOpen = this.handleOpen.bind(this);
+    this.state={ isOpen: false};
   }
 
 
@@ -17,6 +20,19 @@ class RecipeItem extends React.Component {
     // });
     // console.log("THIS:  ",this);
     this.props.onSave(this.props.recipe);
+  }
+
+  handleOpen() {
+    if(this.props.user.length === 0) {
+      this.setState({ isOpen: true})
+    } else {
+      this.props.onSave(this.props.recipe);
+      this.setState({ isOpen: false})
+    }
+  }
+
+  handleClose() {
+    this.setState({ isOpen: false});
   }
 
   render() {
@@ -35,8 +51,17 @@ class RecipeItem extends React.Component {
             Additional Ingredients: {this.props.recipe.missedIngredientCount} <br />
             {this.props.recipe.missedIngredients.map(ingredient => <AdditionalIngredients key={ingredient.id} name={ingredient.name} /> )}
             </Card.Content>
-
-            <button onClick={this.save} > Save Recipe </button>
+                <Popup
+                  trigger={<Button  > Save Recipe </Button>}
+                  content='Login To Save'
+                  on='click'
+                  hideOnScroll
+                  open={this.state.isOpen}
+                  onClose={this.handleClose}
+                  onOpen={this.handleOpen}
+                  position="top center"
+                />
+            
           </Card>
         </div>
       )

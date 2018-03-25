@@ -52,7 +52,7 @@ render() {
 	<div>
    <br />
   <Card.Group centered>
-	{ this.props.recipes.map(recipe => <RecipeItem key={recipe.id} recipe={recipe} onSave={this.props.onSave}/>)} 
+	{ this.props.recipes.map(recipe => <RecipeItem key={recipe.id} recipe={recipe} onSave={this.props.onSave} user={this.props.user}/>)} 
   </Card.Group>
 	</div>
 	</div>
