@@ -11,7 +11,7 @@ class NavBar extends React.Component{
 
 		<div>
 			<div className="login">
-			<Modal trigger={<Button content='Login' icon='user outline' labelPosition='right' />} basic size='small'>
+			<Modal trigger={<Button content='Login' icon='user outline' labelPosition='right' basic inverted/>} basic size='small'>
 			
 			<Modal.Content>
 			  <Segment padded>
