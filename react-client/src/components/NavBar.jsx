@@ -48,7 +48,8 @@ class Login extends React.Component{
 	}
 
   render() {
-		return (
+  	if(!this.props.user.length) {
+  		return (
 
 		<div>
 			<div className="login">
@@ -72,7 +73,15 @@ class Login extends React.Component{
 			</div>
 		</div>  
 		)
+  	} else {
+  		return (
+  			<div className="login" >
+  			<Button content={this.props.user[0].username} icon='user outline' labelPosition='right' basic inverted color="green" /> 
+  			</div>
+  		)
+		
  }
+  	}
 
 } 
 

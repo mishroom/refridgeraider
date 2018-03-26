@@ -138,7 +138,7 @@ class App extends React.Component {
         query: ingredient
       }),
       success: (data) => {
-        this.setState({recipes: JSON.parse(data)});
+        this.setState({recipes: data});
       },
       error: (err) => {
         console.error(err);
@@ -185,11 +185,51 @@ class App extends React.Component {
   }
 
   login (username, password) {
-    console.log(username, password);
+    $.ajax({
+      url: `/login`,
+      type: 'POST',
+      contentType: 'application/json',
+      data: JSON.stringify({
+        username: username,
+        password: password
+      }),
+      success: (data) => {
+        if(!data.length) {
+          alert('username not found. try signing up first');
+        } else if(data[0].password !== password) {
+          alert('wrong password');
+        } else {
+          this.setState({user: data});
+        }
+        
+      },
+      error: (err) => {
+        console.error(err);
+      }
+    })
   }
 
   signup(username, password) {
-    console.log(username, password)
+    $.ajax({
+      url: `/signup`,
+      type: 'POST',
+      contentType: 'application/json',
+      data: JSON.stringify({
+        username: username,
+        password: password
+      }),
+      success: (data) => {
+        if(!data) {
+          alert('username exists');
+        } else {
+          alert('login to continue');
+        }
+        
+      },
+      error: (err) => {
+        console.error(err);
+      }
+    })
   }
 
   render () {

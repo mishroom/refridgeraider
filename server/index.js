@@ -1,6 +1,6 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-var items = require('../database-mongo/index');
+var db = require('../database-mongo/index');
 // const RapidAPI = new require('rapidapi-connect');
 // const rapid = new RapidAPI('refridgerraider_5a4e8c2fe4b038fa76c0cb61', 'a31eb21a-d1de-4cac-9150-9dc378c92bb9');
 var unirest = require('unirest');
@@ -10,51 +10,87 @@ var app = express();
 
 app.use(express.static(__dirname + '/../react-client/dist'));
 
+app.use( bodyParser.json() );       // to support JSON-encoded bodies
+app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
+  extended: true
+})); 
+
 app.post('/storage', function (req, res) {
 
-  req.on('data', function(data){
-    var dataObj = JSON.parse(data.toString());
-    if(dataObj.type === "delete") {
+  // req.on('data', function(data){
+  //   var dataObj = JSON.parse(data.toString());
+  //   if(dataObj.type === "delete") {
 
-      items.deleteRecipe(dataObj.recipe);
-      res.end();
+  //     db.deleteRecipe(dataObj.recipe);
+  //     res.end();
 
-    } else if (dataObj.type === 'save'){
+  //   } else if (dataObj.type === 'save'){
 
-      items.saveRecipe(dataObj.recipe);
-      res.end();
+  //     db.saveRecipe(dataObj.recipe);
+  //     res.end();
 
-    } else if (dataObj.type === 'search') {
+  //   } else if (dataObj.type === 'search') {
 
-      var query = dataObj.query;
-      query = query.split(',').join('%2C');
-            // //connect to API 
-            // unirest.get(`https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=true&ingredients=${query}&limitLicense=false&number=10&ranking=1`)
-            // .header("X-Mashape-Key", "y8p0We0kS8mshZXRWGLWEQWduPRZp115RAsjsn4XvamU1HNo8g")
-            // .header("X-Mashape-Host", "spoonacular-recipe-food-nutrition-v1.p.mashape.com")
-            // .end(function (result) {
-            //   console.log(result.body);
-            //     res.end(JSON.stringify(result.body));
-            //   });
-            res.end(JSON.stringify(sampleData));
-          }
+  //     var query = dataObj.query;
+  //     query = query.split(',').join('%2C');
+  //           // //connect to API 
+  //           // unirest.get(`https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=true&ingredients=${query}&limitLicense=false&number=10&ranking=1`)
+  //           // .header("X-Mashape-Key", "y8p0We0kS8mshZXRWGLWEQWduPRZp115RAsjsn4XvamU1HNo8g")
+  //           // .header("X-Mashape-Host", "spoonacular-recipe-food-nutrition-v1.p.mashape.com")
+  //           // .end(function (result) {
+  //           //   console.log(result.body);
+  //           //     res.end(JSON.stringify(result.body));
+  //           //   });
+  //           res.json(sampleData);
+  //         }
 
-       
-      })
+
+  //     })
+  res.json(sampleData);
 
 });
 
-app.post('/login/:username', (req, res) => {
-  console.log(req.params);
+app.post('/login', (req, res) => {
+  let {username, password} = req.body;
+  db.login({username: username}, (err, data) => {
+    if(err) {
+      console.log(err);
+      res.sendStatus(400);
+    } else {
+      res.json(data);
+    }
+  })
+
 
 })
 
-app.post('/signup/:username', (req, res) => {
-  console.log(req.params);
+app.post('/signup', (req, res) => {
+  let {username, password} = req.body;
+  db.login({username: username}, (err, data) => {
+    if(err) {
+      console.log(err);
+      res.sendStatus(400);
+    } else {
+      console.log("login lookup return", data);
+      if(!data.length) {
+        db.signup({username: username, password: password}, (err, data) => {
+          if(err) {
+            console.log(err);
+            res.sendStatus(400);
+          } else {
+            res.json(1);
+          }
+        })
+      } else {
+        res.json(0)
+      }
+    }
+  })
+
 })
 
 app.get('/storage', function (req, res) {
-  items.selectAll(function(err, data) {
+  db.selectAll(function(err, data) {
     if(err) {
       res.sendStatus(500);
     } else {
@@ -91,8 +127,8 @@ sampleData = [
     "metaInformation":["lakes®"],
     "image":"https://spoonacular.com/cdn/ingredients_100x100/cinnamon-sugar-butter.png"
   },
-    {"id":8120,"amount":0.75,"unit":"cup","unitLong":"cups","unitShort":"cup","aisle":"Cereal","name":"old-fashioned oats","originalString":"3/4 cup uncooked old-fashioned oats","metaInformation":["uncooked"],"i/inmage":"https://spoonacular.com/cdngredients_100x100/rolled-oats.jpg"}],
-    "usedIngredients":[
+  {"id":8120,"amount":0.75,"unit":"cup","unitLong":"cups","unitShort":"cup","aisle":"Cereal","name":"old-fashioned oats","originalString":"3/4 cup uncooked old-fashioned oats","metaInformation":["uncooked"],"i/inmage":"https://spoonacular.com/cdngredients_100x100/rolled-oats.jpg"}],
+  "usedIngredients":[
   {
     "id":9003,
     "amount":6,"unit":"cups","unitLong":"cups","unitShort":"cup","aisle":"Produce","name":"apples",

@@ -26,8 +26,16 @@ var userSchema = mongoose.Schema({
   likedRecipes: [Object]
 });
 
-var User = mongoose.model('User', userSchema);
+var Users = mongoose.model('Users', userSchema);
 
+var login = function(user, cb) {
+  Users.find(user).exec(cb);
+}
+
+var signup = function(user, cb) {
+  const newProfile = new Users(user);
+  newProfile.save();
+}
 
 var saveRecipe = function(recipe) {
   var newRecipe = new Recipe(recipe);
@@ -51,3 +59,5 @@ var selectAll = function(callback) {
 module.exports.selectAll = selectAll;
 module.exports.saveRecipe = saveRecipe;
 module.exports.deleteRecipe = deleteRecipe;
+module.exports.login = login;
+module.exports.signup = signup;
