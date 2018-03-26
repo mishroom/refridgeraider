@@ -7,6 +7,7 @@ class RecipeList extends React.Component {
   constructor(props) {
     super(props);
     this.filter = this.filter.bind(this);
+    this.radioButtons = this.radioButtons.bind(this);
   }
 
   filter(e) {
@@ -17,12 +18,10 @@ class RecipeList extends React.Component {
     this.props.onDownload();
   }
 
-render() {
-  if(this.props.recipes.length) {
+  radioButtons () {
     return (
-  <div>
-  <div className="results">
-  Filter By: <br />
+      <div>
+      Filter By: <br />
   <form>
     <div className="radio">
           <label>
@@ -50,20 +49,40 @@ render() {
           </label>
         </div>
   </form> <br />
-  <div>
-   <br />
-  <Card.Group centered>
-  { this.props.recipes.map(recipe => <RecipeItem key={recipe.id} recipe={recipe} onSave={this.props.onSave} user={this.props.user}/>)} 
-  </Card.Group>
   </div>
-  </div>
-
-  </div>
-  )
-  } else {
-    return (<div></div>)
+    )
   }
-  
-}
+
+  render() {
+    if(this.props.view==="saved") {
+      this.radioButtons();
+      return(
+        <div className="results"> <br />
+          <Card.Group centered>
+            {this.props.user[0].likedRecipes.map(recipe => <Liked key={recipe.id} recipe={recipe} user={this.props.user}/>)}
+          </Card.Group>
+        </div>
+      )
+
+    } else if(this.props.recipes.length) {
+      this.radioButtons();
+      return (
+        <div>
+        <div className="results">
+        <div>
+        <br />
+        <Card.Group centered>
+          { this.props.recipes.map(recipe => <RecipeItem key={recipe.id} recipe={recipe} onSave={this.props.onSave} user={this.props.user}/>)} 
+        </Card.Group>
+        </div>
+        </div>
+
+        </div>
+        )
+    } else{
+      return (<div></div>)
+    }
+    
+  }
 }
 export default RecipeList;

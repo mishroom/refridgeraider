@@ -69,6 +69,7 @@ class App extends React.Component {
       selectedOption: '',
       doubleClick: true,
       user: [],
+      view: null
     }
   }
 
@@ -124,7 +125,7 @@ class App extends React.Component {
         query: ingredient
       }),
       success: (data) => {
-        this.setState({recipes: data});
+        this.setState({recipes: data, view: 'search'});
       },
       error: (err) => {
         console.error(err);
@@ -219,31 +220,37 @@ class App extends React.Component {
     })
   }
 
-  getLikedRecipes() {
-    // $.ajax({
-    //   url: '/storage', 
-    //   success: (data) => {
-    //     this.setState({
-    //       likedRecipes: data
-    //     })
-    //   },
-    //   error: (err) => {
-    //     console.log('err', err);
-    //   }
-    // });
+  showSavedRecipes() {
+    console.log("button clicked")
+    this.setState({view: 'saved'});
   }  
 
   render () {
-    return (
+    // if(this.state.view === 'saved') {
+    //   return (
+    //     <div id='parent'>
+    //       <div className="banner">
+    //         <Banner onSearch={this.search.bind(this)} onLogin={this.login.bind(this)} onSignup={this.signup.bind(this)} user={this.state.user} showSaved={this.showSavedRecipes.bind(this)} />
+    //       </div>
+    //       <div id="body">
+    //         <RecipeList likedRecipes={this.state.likedRecipes} recipes={this.state.recipes} selectedOption={this.state.selectedOption} onSave={this.save.bind(this)} onDelete={this.delete.bind(this)} onClick={this.filter.bind(this)} user={this.state.user} />
+    //       </div>  
+    //     </div>
+    //   )
+    // } else {
+      return (
       <div id='parent'>
-        <div className="banner">
-          <Banner onSearch={this.search.bind(this)} onLogin={this.login.bind(this)} onSignup={this.signup.bind(this)} user={this.state.user}/>
+          <div className="banner">
+            <Banner onSearch={this.search.bind(this)} onLogin={this.login.bind(this)} onSignup={this.signup.bind(this)} user={this.state.user} showSaved={this.showSavedRecipes.bind(this)} />
+          </div>
+          <div id="body">
+            <RecipeList recipes={this.state.recipes} selectedOption={this.state.selectedOption} onSave={this.save.bind(this)} onDelete={this.delete.bind(this)} onClick={this.filter.bind(this)} user={this.state.user} view={this.state.view} />
+          </div>  
         </div>
-        <div id="body">
-          <RecipeList likedRecipes={this.state.likedRecipes} recipes={this.state.recipes} selectedOption={this.state.selectedOption} onSave={this.save.bind(this)} onDelete={this.delete.bind(this)} onClick={this.filter.bind(this)} user={this.state.user} />
-        </div>  
-      </div>
-    )
+      )
+    // }
+
+    
   }
 }
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import $ from 'jquery';
+import { Card, Icon, Image, Button, Popup } from 'semantic-ui-react';
 
 class Liked extends React.Component {
 
@@ -18,16 +18,19 @@ class Liked extends React.Component {
 		// console.log(this.props);
 		// if(this.props.recipe){
 			return (
-				<div className='likedRecipe'>
-						<div className ='col'>
-							Name: <a href={ link.slice(0,-4) } target="_blank">{ this.props.recipe.title }</a><br />
-							Likes: { this.props.recipe.likes }
-						</div>
-						<div className ='col'>
-							<img src={ this.props.recipe.image } />
-						</div>
-						<button onClick={this.delete}> Delete Recipe </button>
-				</div>
+			
+
+		<div className='recipe'>
+          <Card color='green' raised>
+            <Image src={ this.props.recipe.image } />
+            <Card.Content>
+              <Card.Header><a href={ link.slice(0,-4) } target="_blank">{ this.props.recipe.title }</a></Card.Header>
+            </Card.Content>
+            <Card.Content extra>
+            Likes: { this.props.recipe.likes } <br /> <br />
+            </Card.Content>            
+          </Card>
+        </div>
 
 				)
 		// }
@@ -44,14 +47,15 @@ export default Liked;
 
 /*
 
-<div className='recipe'>
-			<div className ='col'>
-			Recipe Name: { this.props.recipe.title }
-			Likes: { this.props.recipe.likes }
-			</div>
-			<div className ='col'>
-			<img src={ this.props.recipe.image } />
-			</div>
-			</div>
+	<div className='likedRecipe'>
+						<div className ='col'>
+							Name: <a href={ link.slice(0,-4) } target="_blank">{ this.props.recipe.title }</a><br />
+							Likes: { this.props.recipe.likes }
+						</div>
+						<div className ='col'>
+							<img src={ this.props.recipe.image } />
+						</div>
+						<button onClick={this.delete}> Delete Recipe </button>
+				</div>
 
 */

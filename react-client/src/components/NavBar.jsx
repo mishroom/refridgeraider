@@ -76,7 +76,7 @@ class Login extends React.Component{
   	} else {
   		return (
   			<div className="login" >
-  			<Button content={this.props.user[0].username} icon='user outline' labelPosition='right' basic inverted color="green" /> 
+  			<Button content={this.props.user[0].username} icon='user outline' labelPosition='right' basic inverted color="green" onClick={this.props.showSaved} /> 
   			</div>
   		)
 		
