@@ -84,8 +84,14 @@ app.post('/signup', (req, res) => {
 
 app.post('/saveRecipe', (req, res) => {
   let { user, recipe } = req.body;
-  db.saveRecipe(user, recipe);
-  res.end();
+  db.saveRecipe(user, recipe, (err, data) => {
+    if(err) {
+      console.log(err);
+      res.end();
+    } else {
+      res.json(data);
+    }
+  });
 })
 
 

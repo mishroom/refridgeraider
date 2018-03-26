@@ -72,20 +72,6 @@ class App extends React.Component {
     }
   }
 
-  getLikedRecipes() {
-    // $.ajax({
-    //   url: '/storage', 
-    //   success: (data) => {
-    //     this.setState({
-    //       likedRecipes: data
-    //     })
-    //   },
-    //   error: (err) => {
-    //     console.log('err', err);
-    //   }
-    // });
-  }
-
   componentDidMount() {
     // this.getLikedRecipes();
   }
@@ -157,7 +143,7 @@ class App extends React.Component {
           recipe: recipe
         }),
         success: (data) => {
-          // console.log(data);
+          this.setState({user: [data]})
         },
         error: (err) => {
           console.error(err);
@@ -232,6 +218,20 @@ class App extends React.Component {
       }
     })
   }
+
+  getLikedRecipes() {
+    // $.ajax({
+    //   url: '/storage', 
+    //   success: (data) => {
+    //     this.setState({
+    //       likedRecipes: data
+    //     })
+    //   },
+    //   error: (err) => {
+    //     console.log('err', err);
+    //   }
+    // });
+  }  
 
   render () {
     return (

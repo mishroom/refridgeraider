@@ -37,16 +37,14 @@ var signup = function(user) {
   newProfile.save();
 }
 
-var saveRecipe = function(user, recipe) {
-  Users.find({username: user.username}, (err, data) => {
-    if(data) {
-      Users.update({_id: user._id}, { $push: {likedRecipes: recipe}}).exec();
-    } else if (err) {
-      console.log(err)
+var saveRecipe = function(user, recipe, cb) {
+  Users.findByIdAndUpdate(user._id, { $push: {likedRecipes: recipe}}, (err, data) => {
+    if(err) {
+      cb(err)
+    } else {
+      cb(null, data);
     }
   });
-  // user.likedRecipes.push(recipe);
-  // console.log(user.likedRecipes);
   
 }
 
