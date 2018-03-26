@@ -71,16 +71,9 @@ app.post('/signup', (req, res) => {
       console.log(err);
       res.sendStatus(400);
     } else {
-      console.log("login lookup return", data);
       if(!data.length) {
-        db.signup({username: username, password: password}, (err, data) => {
-          if(err) {
-            console.log(err);
-            res.sendStatus(400);
-          } else {
-            res.json(1);
-          }
-        })
+        db.signup({username: username, password: password});
+        res.json(1)
       } else {
         res.json(0)
       }

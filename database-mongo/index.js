@@ -32,7 +32,7 @@ var login = function(user, cb) {
   Users.find(user).exec(cb);
 }
 
-var signup = function(user, cb) {
+var signup = function(user) {
   const newProfile = new Users(user);
   newProfile.save();
 }
