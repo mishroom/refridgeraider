@@ -1,12 +1,9 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-// UNCOMMENT THE DATABASE YOU'D LIKE TO USE
-// var items = require('../database-mysql');
 var items = require('../database-mongo/index');
 // const RapidAPI = new require('rapidapi-connect');
 // const rapid = new RapidAPI('refridgerraider_5a4e8c2fe4b038fa76c0cb61', 'a31eb21a-d1de-4cac-9150-9dc378c92bb9');
 var unirest = require('unirest');
-// var sampleData = require('../database-mongo/sample_data')
 
 
 var app = express();
@@ -14,8 +11,6 @@ var app = express();
 app.use(express.static(__dirname + '/../react-client/dist'));
 
 app.post('/storage', function (req, res) {
-
-  // console.log("RECIPE RECEIVED BY SERVER");
 
   req.on('data', function(data){
     var dataObj = JSON.parse(data.toString());
@@ -49,10 +44,14 @@ app.post('/storage', function (req, res) {
 
 });
 
-var sendResults = function (results) {
-  res.send(results);
-}
+app.post('/login/:username', (req, res) => {
+  console.log(req.params);
 
+})
+
+app.post('/signup/:username', (req, res) => {
+  console.log(req.params);
+})
 
 app.get('/storage', function (req, res) {
   items.selectAll(function(err, data) {

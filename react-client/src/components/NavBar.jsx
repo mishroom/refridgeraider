@@ -1,9 +1,50 @@
 import React from 'react';
 import { Button, Header, Icon, Modal, Segment, Divider, Form } from 'semantic-ui-react';
 
-class NavBar extends React.Component{
+class Login extends React.Component{
 	constructor(props) {
 		super(props);
+		this.state={
+			username: "",
+			password: ""
+		}
+		this.signup = this.signup.bind(this);
+		this.login = this.login.bind(this);
+		this.saveUsername = this.saveUsername.bind(this);
+		this.savePassword = this.savePassword.bind(this);
+		this.validate = this.validate.bind(this);
+	}
+
+	saveUsername (e) {
+		this.setState({username: e.target.value});
+
+	}
+	savePassword (e) {
+		this.setState({password: e.target.value});
+	}
+
+	signup () {
+		if (this.validate()) {
+			this.props.onSignup(this.state.username, this.state.password);
+		}
+	}
+
+	login () {
+		if (this.validate()) {
+			this.props.onLogin(this.state.username, this.state.password);
+		}
+	}
+
+	validate () {
+		if (this.state.username.length < 1) {
+			alert("input username bro")
+			return false;
+		}
+		if (this.state.password.length < 1) {
+			alert("input password bro")
+			return false;
+		}
+		return true;
 	}
 
   render() {
@@ -17,13 +58,13 @@ class NavBar extends React.Component{
 			  <Segment padded>
 			  	<Form>
 		        <Form.Group widths='equal'>
-		          <Form.Input fluid label='Username' placeholder='username' />
-		          <Form.Input fluid label='Password' placeholder='password' />
+		          <Form.Input fluid label='Username' placeholder='username' onChange={this.saveUsername} />
+		          <Form.Input fluid label='Password' placeholder='password' onChange={this.savePassword} />
 		        </Form.Group>
 		      </Form>  
 		      <Modal.Actions>
-			      <Button onClick={this.props.onLogin}>Login</Button>
-			      <Button onClick={this.props.onSignup}>Signup</Button>
+			      <Button onClick={this.login}>Login</Button>
+			      <Button onClick={this.signup}>Signup</Button>
 		      </Modal.Actions>
 		  	</Segment>
 		    </Modal.Content>
@@ -35,4 +76,4 @@ class NavBar extends React.Component{
 
 } 
 
-export default NavBar;
+export default Login;

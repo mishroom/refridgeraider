@@ -184,12 +184,12 @@ class App extends React.Component {
     })
   }
 
-  login () {
-    console.log('butt');
+  login (username, password) {
+    console.log(username, password);
   }
 
-  signup() {
-    console.log('nugget')
+  signup(username, password) {
+    console.log(username, password)
   }
 
   render () {
