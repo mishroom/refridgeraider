@@ -19,14 +19,20 @@ class RecipeItem extends React.Component {
     //   recipe: e.target
     // });
     // console.log("THIS:  ",this);
-    this.props.onSave(this.props.recipe);
+    let recipe = {
+      id: this.props.recipe.id, 
+      title: this.props.recipe.title,
+      image: this.props.recipe.image,
+      likes: this.props.recipe.likes
+    }
+    this.props.onSave(recipe);
   }
 
   handleOpen() {
     if(this.props.user.length === 0) {
       this.setState({ isOpen: true})
     } else {
-      this.props.onSave(this.props.recipe);
+      this.save();
       this.setState({ isOpen: false})
     }
   }

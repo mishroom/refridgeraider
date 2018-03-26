@@ -73,21 +73,21 @@ class App extends React.Component {
   }
 
   getLikedRecipes() {
-    $.ajax({
-      url: '/storage', 
-      success: (data) => {
-        this.setState({
-          likedRecipes: data
-        })
-      },
-      error: (err) => {
-        console.log('err', err);
-      }
-    });
+    // $.ajax({
+    //   url: '/storage', 
+    //   success: (data) => {
+    //     this.setState({
+    //       likedRecipes: data
+    //     })
+    //   },
+    //   error: (err) => {
+    //     console.log('err', err);
+    //   }
+    // });
   }
 
   componentDidMount() {
-    this.getLikedRecipes();
+    // this.getLikedRecipes();
   }
 
   filter (e) {
@@ -130,7 +130,7 @@ class App extends React.Component {
 
   search(ingredient) {
       $.ajax({
-      url: `/storage`,
+      url: `/search`,
       type: 'POST',
       contentType: 'application/json',
       data: JSON.stringify({
@@ -147,41 +147,42 @@ class App extends React.Component {
   }
 
   save(recipe) {
-      // $.ajax({
-      //   url: `/storage`,
-      //   type: 'POST',
-      //   //contentType: 'application/json',
-      //    data: JSON.stringify({
-      //     type: 'save',
-      //     recipe: recipe
-      //   }),
-      //   success: (data) => {
-      //     this.getLikedRecipes();
-      //   },
-      //   error: (err) => {
-      //     console.error(err);
-      //   }
-      // })
+    let user = this.state.user[0];
+      $.ajax({
+        url: `/saveRecipe`,
+        type: 'POST',
+        contentType: 'application/json',
+         data: JSON.stringify({
+          user: user,
+          recipe: recipe
+        }),
+        success: (data) => {
+          // console.log(data);
+        },
+        error: (err) => {
+          console.error(err);
+        }
+      })
     
   }
 
   delete (recipe) {
-    $.ajax({
-      url: `/storage`,
-      type: 'POST',
-      contentType: 'application/json',
-      data: JSON.stringify({
-        type: 'delete',
-        recipe: recipe
-      }),
-      success: (data) => {
-        // console.log("RECIPE SENT", data);
-        this.getLikedRecipes();
-      },
-      error: (err) => {
-        console.error(err);
-      }
-    })
+    // $.ajax({
+    //   url: `/storage`,
+    //   type: 'POST',
+    //   contentType: 'application/json',
+    //   data: JSON.stringify({
+    //     type: 'delete',
+    //     recipe: recipe
+    //   }),
+    //   success: (data) => {
+    //     // console.log("RECIPE SENT", data);
+    //     this.getLikedRecipes();
+    //   },
+    //   error: (err) => {
+    //     console.error(err);
+    //   }
+    // })
   }
 
   login (username, password) {

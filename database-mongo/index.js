@@ -23,7 +23,7 @@ var Recipe = mongoose.model('Recipe', recipeSchema);
 var userSchema = mongoose.Schema({
   username: String,
   password: String,
-  likedRecipes: [Object]
+  likedRecipes: [{type: mongoose.Schema.Types.Mixed}]
 });
 
 var Users = mongoose.model('Users', userSchema);
@@ -37,9 +37,17 @@ var signup = function(user) {
   newProfile.save();
 }
 
-var saveRecipe = function(recipe) {
-  var newRecipe = new Recipe(recipe);
-  newRecipe.save();
+var saveRecipe = function(user, recipe) {
+  Users.find({username: user.username}, (err, data) => {
+    if(data) {
+      Users.update({_id: user._id}, { $push: {likedRecipes: recipe}}).exec();
+    } else if (err) {
+      console.log(err)
+    }
+  });
+  // user.likedRecipes.push(recipe);
+  // console.log(user.likedRecipes);
+  
 }
 
 var deleteRecipe = function (recipe) {

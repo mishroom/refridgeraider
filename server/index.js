@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
   extended: true
 })); 
 
-app.post('/storage', function (req, res) {
+app.post('/search', function (req, res) {
 
   // req.on('data', function(data){
   //   var dataObj = JSON.parse(data.toString());
@@ -82,16 +82,11 @@ app.post('/signup', (req, res) => {
 
 })
 
-app.get('/storage', function (req, res) {
-  db.selectAll(function(err, data) {
-    if(err) {
-      res.sendStatus(500);
-    } else {
-      res.json(data);
-    }
-  });
-
-});
+app.post('/saveRecipe', (req, res) => {
+  let { user, recipe } = req.body;
+  db.saveRecipe(user, recipe);
+  res.end();
+})
 
 
 app.listen(process.env.PORT || 3000, function() {
