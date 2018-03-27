@@ -220,8 +220,11 @@ class App extends React.Component {
   }
 
   showSavedRecipes() {
-    console.log("button clicked")
     this.setState({view: 'saved'});
+  }
+
+  logout () {
+    this.setState({user: [], view: 'null'})
   }  
 
   render () {
@@ -240,7 +243,7 @@ class App extends React.Component {
       return (
       <div id='parent'>
           <div className="banner">
-            <Banner onSearch={this.search.bind(this)} onLogin={this.login.bind(this)} onSignup={this.signup.bind(this)} user={this.state.user} showSaved={this.showSavedRecipes.bind(this)} />
+            <Banner onSearch={this.search.bind(this)} onLogin={this.login.bind(this)} onSignup={this.signup.bind(this)} user={this.state.user} showSaved={this.showSavedRecipes.bind(this)} onLogout={this.logout.bind(this)} />
           </div>
           <div id="body">
             <RecipeList recipes={this.state.recipes} selectedOption={this.state.selectedOption} onSave={this.save.bind(this)} onDelete={this.delete.bind(this)} onClick={this.filter.bind(this)} user={this.state.user} view={this.state.view} />

@@ -53,7 +53,7 @@ class Login extends React.Component{
 
 		<div>
 			<div className="login">
-			<Modal trigger={<Button content='Login' icon='user outline' labelPosition='right' basic inverted/>} basic size='small'>
+			<Modal trigger={<Button content='Login' icon='sign in' labelPosition='right' basic inverted/>} basic size='small'>
 			
 			<Modal.Content>
 			  <Segment padded>
@@ -76,12 +76,9 @@ class Login extends React.Component{
   	} else {
   		return (
   			<div className="login" >
-	  			<Menu compact icon='labeled' vertical inverted>
-			        <Menu.Item name='recipeBook' onClick={this.props.showSaved}>
-			          <Icon name='food' />
-			          {this.props.user[0].username}'s Recipe Book
-			        </Menu.Item>
-			    </Menu>
+	  			<Button content={this.props.user[0].username + "s Recipe Book"}  icon='food' labelPosition='right' basic inverted color="green" onClick={this.props.showSaved} /> 
+	  			<Button content="Logout" icon='sign out' labelPosition='right' basic inverted color="green" onClick={this.props.onLogout} /> 
+
   			</div>
   		)
 		
@@ -92,4 +89,10 @@ class Login extends React.Component{
 
 export default Login;
 
-//  			<Button content={this.props.user[0].username} icon='user outline' labelPosition='right' basic inverted color="green" onClick={this.props.showSaved} /> 
+// <Menu compact icon='labeled' vertical inverted>
+// 			        <Menu.Item name='recipeBook' onClick={this.props.showSaved}>
+// 			          <Icon name='food' />
+// 			          {this.props.user[0].username}'s Recipe Book
+// 			        </Menu.Item>
+// 			    </Menu>
+// //  			<Button content={this.props.user[0].username} icon='user outline' labelPosition='right' basic inverted color="green" onClick={this.props.showSaved} /> 
