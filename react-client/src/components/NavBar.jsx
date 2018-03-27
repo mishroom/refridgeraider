@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Header, Icon, Modal, Segment, Divider, Form } from 'semantic-ui-react';
+import { Button, Header, Icon, Modal, Segment, Divider, Form, Menu } from 'semantic-ui-react';
 
 class Login extends React.Component{
 	constructor(props) {
@@ -76,7 +76,12 @@ class Login extends React.Component{
   	} else {
   		return (
   			<div className="login" >
-  			<Button content={this.props.user[0].username} icon='user outline' labelPosition='right' basic inverted color="green" onClick={this.props.showSaved} /> 
+	  			<Menu compact icon='labeled' vertical inverted>
+			        <Menu.Item name='recipeBook' onClick={this.props.showSaved}>
+			          <Icon name='food' />
+			          {this.props.user[0].username}'s Recipe Book
+			        </Menu.Item>
+			    </Menu>
   			</div>
   		)
 		
@@ -86,3 +91,5 @@ class Login extends React.Component{
 } 
 
 export default Login;
+
+//  			<Button content={this.props.user[0].username} icon='user outline' labelPosition='right' basic inverted color="green" onClick={this.props.showSaved} /> 
