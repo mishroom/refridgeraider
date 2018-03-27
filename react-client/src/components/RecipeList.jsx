@@ -54,9 +54,10 @@ class RecipeList extends React.Component {
   }
 
   render() {
+    let radioButtons = this.radioButtons;
     if(this.props.view==="saved") {
-      this.radioButtons();
       return(
+        
         <div className="results"> <br />
           <Card.Group centered>
             {this.props.user[0].likedRecipes.map(recipe => <Liked key={recipe.id} recipe={recipe} user={this.props.user}/>)}
@@ -65,19 +66,14 @@ class RecipeList extends React.Component {
       )
 
     } else if(this.props.recipes.length) {
-      this.radioButtons();
       return (
-        <div>
-        <div className="results">
-        <div>
-        <br />
-        <Card.Group centered>
-          { this.props.recipes.map(recipe => <RecipeItem key={recipe.id} recipe={recipe} onSave={this.props.onSave} user={this.props.user}/>)} 
-        </Card.Group>
-        </div>
+        <div className="results"> <br />
+        {radioButtons()}
+          <Card.Group centered>
+            { this.props.recipes.map(recipe => <RecipeItem key={recipe.id} recipe={recipe} onSave={this.props.onSave} user={this.props.user}/>)} 
+          </Card.Group>
         </div>
 
-        </div>
         )
     } else{
       return (<div></div>)

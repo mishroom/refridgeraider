@@ -16,37 +16,19 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 })); 
 
 app.post('/search', function (req, res) {
+      var query = req.body.query;
+      query = query.split(',').join('%2C');
+            // //connect to API 
+            unirest.get(`https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=true&ingredients=${query}&limitLicense=false&number=10&ranking=1`)
+            .header("X-Mashape-Key", "y8p0We0kS8mshZXRWGLWEQWduPRZp115RAsjsn4XvamU1HNo8g")
+            .header("X-Mashape-Host", "spoonacular-recipe-food-nutrition-v1.p.mashape.com")
+            .end(function (result) {
+              console.log(result.body);
+                res.json(result.body);
+              });
+            // res.json(sampleData);
 
-  // req.on('data', function(data){
-  //   var dataObj = JSON.parse(data.toString());
-  //   if(dataObj.type === "delete") {
-
-  //     db.deleteRecipe(dataObj.recipe);
-  //     res.end();
-
-  //   } else if (dataObj.type === 'save'){
-
-  //     db.saveRecipe(dataObj.recipe);
-  //     res.end();
-
-  //   } else if (dataObj.type === 'search') {
-
-  //     var query = dataObj.query;
-  //     query = query.split(',').join('%2C');
-  //           // //connect to API 
-  //           // unirest.get(`https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=true&ingredients=${query}&limitLicense=false&number=10&ranking=1`)
-  //           // .header("X-Mashape-Key", "y8p0We0kS8mshZXRWGLWEQWduPRZp115RAsjsn4XvamU1HNo8g")
-  //           // .header("X-Mashape-Host", "spoonacular-recipe-food-nutrition-v1.p.mashape.com")
-  //           // .end(function (result) {
-  //           //   console.log(result.body);
-  //           //     res.end(JSON.stringify(result.body));
-  //           //   });
-  //           res.json(sampleData);
-  //         }
-
-
-  //     })
-  res.json(sampleData);
+  // res.json(sampleData);
 
 });
 

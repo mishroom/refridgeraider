@@ -121,7 +121,6 @@ class App extends React.Component {
       type: 'POST',
       contentType: 'application/json',
       data: JSON.stringify({
-        type: 'search',
         query: ingredient
       }),
       success: (data) => {
