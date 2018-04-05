@@ -8,7 +8,7 @@ body {
   background-repeat: no-repeat;
 }
 .recipeImg {
- /* */
+ /* */  width: auto;
         height: 200px;
         font-size: 1rem;
 }
@@ -77,4 +77,12 @@ body {
 }*/
 .radio{
 	width: 100%;
+}
+
+.cardScroll {
+    height: 170px;
+    overflow: auto;
+}
+.recipeName {
+    height: 60px;
 }

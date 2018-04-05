@@ -1,7 +1,7 @@
 import React from 'react';
 import AdditionalIngredients from './AdditionalIngredients.jsx';
 import UnusedIngredients from './UnusedIngredients.jsx';
-import { Card, Icon, Image, Button, Popup } from 'semantic-ui-react';
+import { Card, Icon, Image, Button, Popup, Label } from 'semantic-ui-react';
 
 class RecipeItem extends React.Component {
 
@@ -46,14 +46,22 @@ class RecipeItem extends React.Component {
       return (
         <div className='recipe'>
           <Card raised >
-          <a href={ link.slice(0,-4) } target="_blank">
-          <div className="imageRe" style={{backgroundImage : 'url(' + this.props.recipe.image + ')',}} href={ link.slice(0,-4) } target="_blank"> </div> </a>
-            <Card.Content >
-              <Card.Header><a href={ link.slice(0,-4) } target="_blank">{ this.props.recipe.title }</a></Card.Header>
+
+            <a href={ link.slice(0,-4) } target="_blank">
+
+            <div className="imageRe" style={{backgroundImage : 'url(' + this.props.recipe.image + ')',}} href={ link.slice(0,-4) } target="_blank" > 
+            <Label>
+              <Icon name='heart' color="red" /> { this.props.recipe.likes }
+            </Label>
+            </div> </a>
+            <Card.Content className='recipeName'>
+
+              <Card.Header size='medium'><a href={ link.slice(0,-4) } target="_blank">{ this.props.recipe.title }</a></Card.Header>
             </Card.Content>
 
-            <Card.Content extra href={ link.slice(0,-4) } target="_blank">
-            Likes: { this.props.recipe.likes } <br /> <br />
+            <Card.Content className="cardScroll" extra href={ link.slice(0,-4) } target="_blank">
+            
+            
             Unused Ingredients: {this.props.recipe.unusedIngredients.length} <br />
             {this.props.recipe.unusedIngredients.map(ingredient => <UnusedIngredients key={ingredient.id} name={ingredient.name} /> )} <br />
             Additional Ingredients: {this.props.recipe.missedIngredientCount} <br />
@@ -77,3 +85,7 @@ class RecipeItem extends React.Component {
   }
 
   export default RecipeItem;
+
+  /*
+          <Image className='recipeImg' src={this.props.recipe.image} label={{ as: 'a', color: 'black', content: 'Hotel', icon: 'hotel', ribbon: true }} />
+          */
