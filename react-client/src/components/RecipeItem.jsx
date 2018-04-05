@@ -45,12 +45,14 @@ class RecipeItem extends React.Component {
     var link =  this.props.recipe.image.slice(0,23) + this.props.recipe.image.slice(36)
       return (
         <div className='recipe'>
-          <Card color='green' raised>
-            <Image src={ this.props.recipe.image } />
-            <Card.Content>
+          <Card raised >
+          <a href={ link.slice(0,-4) } target="_blank">
+          <div className="imageRe" style={{backgroundImage : 'url(' + this.props.recipe.image + ')',}} href={ link.slice(0,-4) } target="_blank"> </div> </a>
+            <Card.Content >
               <Card.Header><a href={ link.slice(0,-4) } target="_blank">{ this.props.recipe.title }</a></Card.Header>
             </Card.Content>
-            <Card.Content extra>
+
+            <Card.Content extra href={ link.slice(0,-4) } target="_blank">
             Likes: { this.props.recipe.likes } <br /> <br />
             Unused Ingredients: {this.props.recipe.unusedIngredients.length} <br />
             {this.props.recipe.unusedIngredients.map(ingredient => <UnusedIngredients key={ingredient.id} name={ingredient.name} /> )} <br />
@@ -58,7 +60,7 @@ class RecipeItem extends React.Component {
             {this.props.recipe.missedIngredients.map(ingredient => <AdditionalIngredients key={ingredient.id} name={ingredient.name} /> )}
             </Card.Content>
                 <Popup
-                  trigger={<Button  > Save Recipe </Button>}
+                  trigger={<Button color="green" > Save Recipe </Button>}
                   content='Login To Save'
                   on='click'
                   hideOnScroll

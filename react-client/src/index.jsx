@@ -228,18 +228,6 @@ class App extends React.Component {
   }  
 
   render () {
-    // if(this.state.view === 'saved') {
-    //   return (
-    //     <div id='parent'>
-    //       <div className="banner">
-    //         <Banner onSearch={this.search.bind(this)} onLogin={this.login.bind(this)} onSignup={this.signup.bind(this)} user={this.state.user} showSaved={this.showSavedRecipes.bind(this)} />
-    //       </div>
-    //       <div id="body">
-    //         <RecipeList likedRecipes={this.state.likedRecipes} recipes={this.state.recipes} selectedOption={this.state.selectedOption} onSave={this.save.bind(this)} onDelete={this.delete.bind(this)} onClick={this.filter.bind(this)} user={this.state.user} />
-    //       </div>  
-    //     </div>
-    //   )
-    // } else {
       return (
       <div id='parent'>
           <div className="banner">
