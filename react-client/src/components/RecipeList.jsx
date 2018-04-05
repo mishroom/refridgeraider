@@ -76,7 +76,7 @@ class RecipeList extends React.Component {
 
         )
     } else{
-      return (<div></div>)
+      return (<div>Search above to see results</div>)
     }
     
   }

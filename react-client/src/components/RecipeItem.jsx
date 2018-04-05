@@ -42,6 +42,7 @@ class RecipeItem extends React.Component {
   }
 
   render() {
+    console.log(this.props.recipe);
     var link =  this.props.recipe.image.slice(0,23) + this.props.recipe.image.slice(36)
       return (
         <div className='recipe'>
