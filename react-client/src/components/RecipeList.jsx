@@ -1,7 +1,7 @@
 import React from 'react';
 import RecipeItem from './RecipeItem.jsx';
 import Liked from './Liked.jsx';
-import { Card } from 'semantic-ui-react';
+import { Card, Container, Header, Step } from 'semantic-ui-react';
 
 class RecipeList extends React.Component {
   constructor(props) {
@@ -55,6 +55,11 @@ class RecipeList extends React.Component {
 
   render() {
     let radioButtons = this.radioButtons;
+    const steps = [
+      { key: 'shipping', icon: 'signup', title: 'Login', description: '' },
+      { key: 'billing',  icon: 'plus cart', title: 'Enter Ingredients', description: '' },
+      { key: 'confirm',  icon: 'food', title: 'Start Cooking' }
+    ]
     if(this.props.view==="saved") {
       return(
         
@@ -76,7 +81,18 @@ class RecipeList extends React.Component {
 
         )
     } else{
-      return (<div>Search above to see results</div>)
+      return (
+        <div>
+        <Container text textAlign='center'>
+          <br />
+          <Header as='h2'>How It Works</Header>
+          <Step.Group items={steps} />
+          
+           
+          
+        </Container>
+        </div>
+      )
     }
     
   }
